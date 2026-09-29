@@ -4,7 +4,7 @@ Sidecar-less service mesh with Istio Ambient mode (ztunnel + waypoint proxies) o
 
 ## Steps
 - [x] 00 - Multi-node kind cluster
-- [ ] 01 - Istio ambient install + Prometheus/Grafana/Kiali
+- [x] 01 - Istio ambient install + Prometheus/Grafana/Kiali
 - [ ] 02 - Workloads in ambient mesh (mTLS proof)
 - [ ] 03 - Waypoint proxy + HTTPRoute 80/20 canary
 - [ ] 04 - L4 vs L7 AuthorizationPolicy
