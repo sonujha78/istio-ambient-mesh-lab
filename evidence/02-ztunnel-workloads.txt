@@ -1,0 +1,8 @@
+NAMESPACE          POD NAME                                      ADDRESS     NODE                  WAYPOINT PROTOCOL
+ambient-demo       curl-56ddfb95dc-g2g85                         10.244.2.5  ambient-worker        None     HBONE
+ambient-demo       details-v1-6cc9db646f-ppg8g                   10.244.1.7  ambient-worker2       None     HBONE
+ambient-demo       productpage-v1-574c45789d-pmd8c               10.244.1.12 ambient-worker2       None     HBONE
+ambient-demo       ratings-v1-59d4b8b76f-4p946                   10.244.1.8  ambient-worker2       None     HBONE
+ambient-demo       reviews-v1-7bbc4c5497-hg5w9                   10.244.1.9  ambient-worker2       None     HBONE
+ambient-demo       reviews-v2-7b5b4d5d65-k86r7                   10.244.1.10 ambient-worker2       None     HBONE
+ambient-demo       reviews-v3-5bcf66d84f-sp9v7                   10.244.1.11 ambient-worker2       None     HBONE

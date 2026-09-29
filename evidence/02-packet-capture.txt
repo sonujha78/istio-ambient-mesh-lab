@@ -1,0 +1,21 @@
+=== total packets captured ===
+12834
+
+=== HBONE (port 15008) packets between nodes ===
+22:48:10.097734 IP 10.244.2.5.59794 > 10.244.1.12.15008: Flags [S], seq 4228573520, win 64240, options [mss 1460,sackOK,TS val 2598303476 ecr 0,nop,wscale 10], length 0
+22:48:10.097797 IP 10.244.1.12.15008 > 10.244.2.5.59794: Flags [S.], seq 415122046, ack 4228573521, win 65160, options [mss 1460,sackOK,TS val 143174803 ecr 2598303476,nop,wscale 10], length 0
+22:48:10.097828 IP 10.244.2.5.59794 > 10.244.1.12.15008: Flags [.], ack 1, win 63, options [nop,nop,TS val 2598303476 ecr 143174803], length 0
+22:48:10.098050 IP 10.244.2.5.59794 > 10.244.1.12.15008: Flags [P.], seq 1:216, ack 1, win 63, options [nop,nop,TS val 2598303477 ecr 143174803], length 215
+22:48:10.098080 IP 10.244.1.12.15008 > 10.244.2.5.59794: Flags [.], ack 216, win 64, options [nop,nop,TS val 143174804 ecr 2598303477], length 0
+22:48:10.098904 IP 10.244.1.12.15008 > 10.244.2.5.59794: Flags [P.], seq 1:1041, ack 216, win 64, options [nop,nop,TS val 143174804 ecr 2598303477], length 1040
+22:48:10.098953 IP 10.244.2.5.59794 > 10.244.1.12.15008: Flags [.], ack 1041, win 66, options [nop,nop,TS val 2598303478 ecr 143174804], length 0
+22:48:10.100218 IP 10.244.2.5.59794 > 10.244.1.12.15008: Flags [P.], seq 216:1024, ack 1041, win 66, options [nop,nop,TS val 2598303479 ecr 143174804], length 808
+
+=== port 15008 packet count ===
+423
+
+=== plaintext app port 9080 packets on node bridge ===
+0
+
+=== occurrences of plaintext page content in capture ===
+0
