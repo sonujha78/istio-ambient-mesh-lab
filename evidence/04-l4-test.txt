@@ -1,0 +1,9 @@
+=== L4 policy applied ===
+-- curl (unauthorized identity) -> details --
+curl: (56) Recv failure: Connection reset by peer
+http_code=000
+command terminated with exit code 56
+curl_exit=56
+-- productpage (authorized identity) still works end-to-end --
+http_code=200
+curl_exit=0

@@ -1,0 +1,8 @@
+=== L7 policy applied ===
+-- curl -> reviews /reviews/0 (allowed path) --
+http_code=200
+curl_exit=0
+-- curl -> reviews /admin (denied path) --
+RBAC: access denied
+http_code=403
+curl_exit=0

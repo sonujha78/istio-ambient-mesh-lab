@@ -1,0 +1,21 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: reviews-l7-paths
+  namespace: ambient-demo
+spec:
+  targetRefs:
+  - kind: Service
+    group: ""
+    name: reviews
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/ambient-demo/sa/curl
+        - cluster.local/ns/ambient-demo/sa/bookinfo-productpage
+    to:
+    - operation:
+        methods: ["GET"]
+        paths: ["/reviews/*", "/health"]
