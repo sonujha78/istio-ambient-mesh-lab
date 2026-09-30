@@ -1,0 +1,31 @@
+##### 1. PROXY CONTAINER COUNT #####
+AMBIENT : app pods=13 | ztunnel=3 (1 per node) + waypoints=1 => proxy containers=4
+SIDECAR : app pods=13 | istio-proxy sidecars=13 => proxy containers=13
+
+##### 2. RESOURCE REQUESTS (what gets reserved) #####
+sidecar istio-proxy (per pod) : {"limits":{"cpu":"2","memory":"1Gi"},"requests":{"cpu":"100m","memory":"128Mi"}}
+ztunnel (per node)            : {"requests":{"cpu":"200m","memory":"512Mi"}}
+
+##### 3. AMBIENT under load (800 requests) #####
+ztunnel-8tw86                 1m     10Mi    
+ztunnel-p8d77                 135m   13Mi    
+ztunnel-qhvpc                 141m   17Mi    
+waypoint-c9fd69f55-7j44m          64m    36Mi    
+ztunnels total: cpu=277m mem=40Mi
+waypoints total: cpu=64m mem=36Mi
+
+##### 4. SIDECAR under load (800 requests) #####
+curl-56ddfb95dc-zhnmc             istio-proxy   33m    35Mi    
+details-v1-6cc9db646f-f9mr9       istio-proxy   11m    35Mi    
+details-v1-6cc9db646f-ng748       istio-proxy   9m     37Mi    
+details-v1-6cc9db646f-nxkn4       istio-proxy   11m    37Mi    
+productpage-v1-574c45789d-2xpdm   istio-proxy   34m    35Mi    
+productpage-v1-574c45789d-jqc7m   istio-proxy   36m    38Mi    
+productpage-v1-574c45789d-wh4zh   istio-proxy   26m    35Mi    
+ratings-v1-59d4b8b76f-2csxx       istio-proxy   8m     36Mi    
+ratings-v1-59d4b8b76f-8s5l4       istio-proxy   8m     33Mi    
+ratings-v1-59d4b8b76f-qrdnx       istio-proxy   7m     33Mi    
+reviews-v1-7bbc4c5497-mc4s9       istio-proxy   11m    34Mi    
+reviews-v2-7b5b4d5d65-vlwxx       istio-proxy   18m    34Mi    
+reviews-v3-5bcf66d84f-bjd89       istio-proxy   16m    36Mi    
+sidecars total: cpu=228m mem=458Mi
