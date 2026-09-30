@@ -1,0 +1,15 @@
+== preflight ==
+W1 (http://reviews:9080/reviews/0): 200
+W2 (http://ratings:9080/ratings/0): 200
+W3 (http://productpage:9080/productpage): 200
+W4 (http://10.244.1.9:9080/reviews/0): 200
+
+== killing waypoint pod waypoint-c9fd69f55-7j44m ==
+pod "waypoint-c9fd69f55-7j44m" deleted from ambient-demo namespace
+replacement waypoint: waypoint-c9fd69f55-r6lrl, ready after 3.0s
+
+== RESULT (times relative to kill = 0s) ==
+W1 total=65 non200=6 first=0.5s last=2.6s codes: 000=6 200=59
+W2 total=65 non200=0 first=- last=- codes: 200=65
+W3 total=61 non200=6 first=0.3s last=2.6s codes: 200-DEGRADED=6 200=55
+W4 total=65 non200=0 first=- last=- codes: 200=65

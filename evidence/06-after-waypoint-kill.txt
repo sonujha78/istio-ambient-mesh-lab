@@ -1,0 +1,12 @@
+NAME                              RESTARTS   STARTED
+ratings-v1-59d4b8b76f-4p946       0          2026-09-29T16:53:44Z
+ratings-v1-59d4b8b76f-hqc5f       0          2026-09-30T06:01:33Z
+ratings-v1-59d4b8b76f-wpk4r       0          2026-09-30T06:01:33Z
+reviews-v1-7bbc4c5497-hg5w9       0          2026-09-29T16:53:44Z
+reviews-v2-7b5b4d5d65-k86r7       0          2026-09-29T16:53:44Z
+reviews-v3-5bcf66d84f-sp9v7       0          2026-09-29T16:53:44Z
+waypoint-c9fd69f55-r6lrl          0          2026-09-30T06:33:52Z
+NAME            RESTARTS   STARTED
+ztunnel-drw7k   0          2026-09-30T06:08:49Z
+ztunnel-sqdzn   0          2026-09-30T06:08:52Z
+ztunnel-srg6r   0          2026-09-30T06:29:51Z

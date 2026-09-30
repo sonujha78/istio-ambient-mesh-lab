@@ -1,0 +1,2 @@
+direct pod IP /admin -> 404
+via Service /admin  -> 403
