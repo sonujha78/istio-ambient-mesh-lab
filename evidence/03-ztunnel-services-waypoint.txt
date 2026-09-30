@@ -1,0 +1,7 @@
+NAMESPACE    SERVICE NAME                SERVICE VIP   WAYPOINT ENDPOINTS
+ambient-demo curl                        10.96.224.57  None     1/1
+ambient-demo details                     10.96.109.194 None     1/1
+ambient-demo productpage                 10.96.163.238 None     1/1
+ambient-demo ratings                     10.96.167.184 None     1/1
+ambient-demo reviews                     10.96.103.129 waypoint 3/3
+ambient-demo waypoint                    10.96.47.58   None     1/1

@@ -1,0 +1,9 @@
+NAME                              READY   STATUS    RESTARTS   AGE   IP            NODE              NOMINATED NODE   READINESS GATES
+curl-56ddfb95dc-g2g85             1/1     Running   0          12h   10.244.2.5    ambient-worker    <none>           <none>
+details-v1-6cc9db646f-ppg8g       1/1     Running   0          12h   10.244.1.7    ambient-worker2   <none>           <none>
+productpage-v1-574c45789d-pmd8c   1/1     Running   0          12h   10.244.1.12   ambient-worker2   <none>           <none>
+ratings-v1-59d4b8b76f-4p946       1/1     Running   0          12h   10.244.1.8    ambient-worker2   <none>           <none>
+reviews-v1-7bbc4c5497-hg5w9       1/1     Running   0          12h   10.244.1.9    ambient-worker2   <none>           <none>
+reviews-v2-7b5b4d5d65-k86r7       1/1     Running   0          12h   10.244.1.10   ambient-worker2   <none>           <none>
+reviews-v3-5bcf66d84f-sp9v7       1/1     Running   0          12h   10.244.1.11   ambient-worker2   <none>           <none>
+waypoint-c9fd69f55-7j44m          1/1     Running   0          53s   10.244.1.13   ambient-worker2   <none>           <none>
