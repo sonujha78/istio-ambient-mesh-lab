@@ -1,0 +1,110 @@
+##### A. AMBIENT: restart one APP deployment, ztunnel must stay untouched #####
+-- ztunnel BEFORE --
+NAME            INIT     CONTAINERS    RESTARTS   STARTED
+ztunnel-8tw86   <none>   istio-proxy   0          2026-09-29T12:23:09Z
+ztunnel-p8d77   <none>   istio-proxy   0          2026-09-29T12:23:09Z
+ztunnel-qhvpc   <none>   istio-proxy   0          2026-09-29T12:23:09Z
+deployment.apps/productpage-v1 restarted
+Waiting for deployment "productpage-v1" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "productpage-v1" rollout to finish: 1 old replicas are pending termination...
+deployment "productpage-v1" successfully rolled out
+-- ztunnel AFTER --
+NAME            INIT     CONTAINERS    RESTARTS   STARTED
+ztunnel-8tw86   <none>   istio-proxy   0          2026-09-29T12:23:09Z
+ztunnel-p8d77   <none>   istio-proxy   0          2026-09-29T12:23:09Z
+ztunnel-qhvpc   <none>   istio-proxy   0          2026-09-29T12:23:09Z
+-- productpage pods (ambient) --
+NAME                              INIT     CONTAINERS    RESTARTS   STARTED
+productpage-v1-574c45789d-lp4p7   <none>   productpage   0          2026-09-30T06:01:33Z
+productpage-v1-574c45789d-pmd8c   <none>   productpage   0          2026-09-29T16:53:44Z
+productpage-v1-745f857575-7hgnt   <none>   productpage   0          2026-09-30T06:08:32Z
+productpage-v1-745f857575-hh56g   <none>   productpage   0          2026-09-30T06:08:34Z
+productpage-v1-745f857575-r7fcz   <none>   productpage   0          2026-09-30T06:08:33Z
+
+##### B. SIDECAR: restart same app deployment, proxy is recreated with the pod #####
+-- productpage pods BEFORE --
+NAME                              INIT                           CONTAINERS    RESTARTS   STARTED
+productpage-v1-574c45789d-2xpdm   istio-validation,istio-proxy   productpage   0          2026-09-30T06:02:53Z
+productpage-v1-574c45789d-jqc7m   istio-validation,istio-proxy   productpage   0          2026-09-30T05:34:20Z
+productpage-v1-574c45789d-wh4zh   istio-validation,istio-proxy   productpage   0          2026-09-30T06:02:53Z
+deployment.apps/productpage-v1 restarted
+Waiting for deployment "productpage-v1" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "productpage-v1" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "productpage-v1" rollout to finish: 1 old replicas are pending termination...
+deployment "productpage-v1" successfully rolled out
+-- productpage pods AFTER (new pods, new istio-proxy each) --
+NAME                              INIT                           CONTAINERS    RESTARTS   STARTED
+productpage-v1-574c45789d-jqc7m   istio-validation,istio-proxy   productpage   0          2026-09-30T05:34:20Z
+productpage-v1-5c9878d595-pg84x   istio-validation,istio-proxy   productpage   0          2026-09-30T06:08:40Z
+productpage-v1-5c9878d595-rf29f   istio-validation,istio-proxy   productpage   0          2026-09-30T06:08:45Z
+productpage-v1-5c9878d595-zrqbd   istio-validation,istio-proxy   productpage   0          2026-09-30T06:08:36Z
+-- proxy image is baked into every app pod: --
+curl-56ddfb95dc-zhnmc  docker.io/istio/proxyv2:1.31.1-distroless
+details-v1-6cc9db646f-f9mr9  docker.io/istio/proxyv2:1.31.1-distroless
+details-v1-6cc9db646f-ng748  docker.io/istio/proxyv2:1.31.1-distroless
+details-v1-6cc9db646f-nxkn4  docker.io/istio/proxyv2:1.31.1-distroless
+productpage-v1-574c45789d-jqc7m  docker.io/istio/proxyv2:1.31.1-distroless
+productpage-v1-5c9878d595-pg84x  docker.io/istio/proxyv2:1.31.1-distroless
+productpage-v1-5c9878d595-rf29f  docker.io/istio/proxyv2:1.31.1-distroless
+productpage-v1-5c9878d595-zrqbd  docker.io/istio/proxyv2:1.31.1-distroless
+ratings-v1-59d4b8b76f-2csxx  docker.io/istio/proxyv2:1.31.1-distroless
+ratings-v1-59d4b8b76f-8s5l4  docker.io/istio/proxyv2:1.31.1-distroless
+ratings-v1-59d4b8b76f-qrdnx  docker.io/istio/proxyv2:1.31.1-distroless
+reviews-v1-7bbc4c5497-mc4s9  docker.io/istio/proxyv2:1.31.1-distroless
+reviews-v2-7b5b4d5d65-vlwxx  docker.io/istio/proxyv2:1.31.1-distroless
+reviews-v3-5bcf66d84f-bjd89  docker.io/istio/proxyv2:1.31.1-distroless
+
+##### C. AMBIENT: restart ALL ztunnels (data-plane restart), app pods untouched #####
+-- ambient app pods BEFORE --
+NAME                              INIT     CONTAINERS    RESTARTS   STARTED
+curl-56ddfb95dc-g2g85             <none>   curl          0          2026-09-29T16:53:45Z
+details-v1-6cc9db646f-ppg8g       <none>   details       0          2026-09-29T16:53:44Z
+details-v1-6cc9db646f-tcx5p       <none>   details       0          2026-09-30T06:01:33Z
+details-v1-6cc9db646f-ws2s4       <none>   details       0          2026-09-30T06:01:32Z
+productpage-v1-745f857575-7hgnt   <none>   productpage   0          2026-09-30T06:08:32Z
+productpage-v1-745f857575-hh56g   <none>   productpage   0          2026-09-30T06:08:34Z
+productpage-v1-745f857575-r7fcz   <none>   productpage   0          2026-09-30T06:08:33Z
+ratings-v1-59d4b8b76f-4p946       <none>   ratings       0          2026-09-29T16:53:44Z
+ratings-v1-59d4b8b76f-hqc5f       <none>   ratings       0          2026-09-30T06:01:33Z
+ratings-v1-59d4b8b76f-wpk4r       <none>   ratings       0          2026-09-30T06:01:33Z
+reviews-v1-7bbc4c5497-hg5w9       <none>   reviews       0          2026-09-29T16:53:44Z
+reviews-v2-7b5b4d5d65-k86r7       <none>   reviews       0          2026-09-29T16:53:44Z
+reviews-v3-5bcf66d84f-sp9v7       <none>   reviews       0          2026-09-29T16:53:44Z
+waypoint-c9fd69f55-7j44m          <none>   istio-proxy   0          2026-09-30T05:17:09Z
+daemonset.apps/ztunnel restarted
+Waiting for daemon set "ztunnel" rollout to finish: 0 out of 3 new pods have been updated...
+Waiting for daemon set "ztunnel" rollout to finish: 1 out of 3 new pods have been updated...
+Waiting for daemon set "ztunnel" rollout to finish: 2 out of 3 new pods have been updated...
+daemon set "ztunnel" successfully rolled out
+-- ambient app pods AFTER (names, RESTARTS, STARTED must be unchanged) --
+NAME                              INIT     CONTAINERS    RESTARTS   STARTED
+curl-56ddfb95dc-g2g85             <none>   curl          0          2026-09-29T16:53:45Z
+details-v1-6cc9db646f-ppg8g       <none>   details       0          2026-09-29T16:53:44Z
+details-v1-6cc9db646f-tcx5p       <none>   details       0          2026-09-30T06:01:33Z
+details-v1-6cc9db646f-ws2s4       <none>   details       0          2026-09-30T06:01:32Z
+productpage-v1-745f857575-7hgnt   <none>   productpage   0          2026-09-30T06:08:32Z
+productpage-v1-745f857575-hh56g   <none>   productpage   0          2026-09-30T06:08:34Z
+productpage-v1-745f857575-r7fcz   <none>   productpage   0          2026-09-30T06:08:33Z
+ratings-v1-59d4b8b76f-4p946       <none>   ratings       0          2026-09-29T16:53:44Z
+ratings-v1-59d4b8b76f-hqc5f       <none>   ratings       0          2026-09-30T06:01:33Z
+ratings-v1-59d4b8b76f-wpk4r       <none>   ratings       0          2026-09-30T06:01:33Z
+reviews-v1-7bbc4c5497-hg5w9       <none>   reviews       0          2026-09-29T16:53:44Z
+reviews-v2-7b5b4d5d65-k86r7       <none>   reviews       0          2026-09-29T16:53:44Z
+reviews-v3-5bcf66d84f-sp9v7       <none>   reviews       0          2026-09-29T16:53:44Z
+waypoint-c9fd69f55-7j44m          <none>   istio-proxy   0          2026-09-30T05:17:09Z
+-- traffic after ztunnel restart (10 requests) --
+200 200 200 200 200 200 200 200 200 200 
+
+##### D. waypoint resource requests (missing from the overhead table) #####
+{"limits":{"cpu":"2","memory":"1Gi"},"requests":{"cpu":"100m","memory":"128Mi"}}

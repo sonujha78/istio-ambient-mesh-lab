@@ -1,0 +1,4 @@
+NAME            RESTARTS   STARTED
+ztunnel-drw7k   0          2026-09-30T06:08:49Z
+ztunnel-hxpm8   0          2026-09-30T06:08:51Z
+ztunnel-sqdzn   0          2026-09-30T06:08:52Z
