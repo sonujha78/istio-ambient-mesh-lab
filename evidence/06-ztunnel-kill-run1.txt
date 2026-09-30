@@ -1,0 +1,15 @@
+== preflight: all 4 paths must return 200 ==
+P1 (probe-cli-w1 -> 10.244.2.22): 200
+P2 (probe-cli-w2 -> 10.244.1.31): 200
+P3 (probe-cli-w1 -> 10.244.1.31): 200
+P4 (probe-cli-w2 -> 10.244.2.22): 200
+
+== killing ztunnel-hxpm8 (node ambient-worker2) ==
+pod "ztunnel-hxpm8" deleted from istio-system namespace
+replacement ztunnel: ztunnel-9blc7, ready after 1.3s
+
+== RESULT (times relative to kill = 0s) ==
+P1 total=61 failed=0 first_fail=- last_fail=-
+P2 total=61 failed=1 first_fail=0.3s last_fail=0.3s
+P3 total=61 failed=1 first_fail=0.3s last_fail=0.3s
+P4 total=61 failed=1 first_fail=0.3s last_fail=0.3s

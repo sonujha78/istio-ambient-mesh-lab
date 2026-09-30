@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: probe-srv-w1, namespace: failure-demo}
+spec:
+  nodeName: ambient-worker
+  containers:
+  - {name: nginx, image: "nginx:alpine", ports: [{containerPort: 80}]}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: probe-srv-w2, namespace: failure-demo}
+spec:
+  nodeName: ambient-worker2
+  containers:
+  - {name: nginx, image: "nginx:alpine", ports: [{containerPort: 80}]}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: probe-cli-w1, namespace: failure-demo}
+spec:
+  nodeName: ambient-worker
+  containers:
+  - {name: curl, image: "curlimages/curl", command: ["sleep", "infinity"]}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: probe-cli-w2, namespace: failure-demo}
+spec:
+  nodeName: ambient-worker2
+  containers:
+  - {name: curl, image: "curlimages/curl", command: ["sleep", "infinity"]}
